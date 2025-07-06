@@ -1,0 +1,29 @@
+
+# why use abstract class : if we use a class globally but some of function will be change after inherit that's why use abstract class . 
+
+# concrete class : who inherit the abstract class . 
+
+# abstract class : overwirte all function who inherit (contrete -class)
+
+# interface class : can't contain the varibale . only method keeps in the class for best practise . before class name use 'I' short form of interface like : IPayment.
+
+# context : block of code . example => $hold_codes {line of code.}
+
+# strategy design pattern : not change previous code + add new feature code . interface question . 
+
+# Solid principle : 
+---------------------
+
+
+#interface segregation principle :
+-----------------------------------
+ not force any class to impletement any function [though it's not be used]. 
+
+
+#DRY:
+-----
+ don't repeate your-self. 
+
+#Yagni : 
+---------
+your aren't gonna need it . 
