@@ -1,0 +1,226 @@
+Solid: 
+#S = single responsibility principle: 
+---------------------------------------------
+Different different class handle differe logic : 
+Class student : hanlde sudent add, delete , or student related logic 
+
+Class payment : handle the payment logic 
+
+Class notification : handle notification logic . 
+
+Don’t implement all logic in one class . 
+
+#Open close principle: 
+---------------------------------
+
+Main class handle all logic structure . We add some of feature with out change the main structure logic. 
+
+#Dry principle : Don’t repete your self
+----------------------
+
+class A : 
+	func_a();
+	func_b();
+	func_c();
+
+class B : 
+	func_a();
+	func_b();
+	func_c();
+-------------- solve dry problem below: 
+
+Class C: 
+	func_a();
+	func_b();
+	func_c();
+
+process(){
+func_a();
+	func_b();
+	func_c();}
+
+class A extent C{
+		process()
+}
+
+class B extent C{
+	process();
+}
+
+
+Interface segregation: don’t force any class to impletent all interface methods. Solution with multiple interface inheritance . 
+
+
+
+
+
+
+ #list of substitution princple: 
+--------------------------------------
+implement code that child object can modify the parent class. 
+
+🔵 L – Liskov Substitution Principle (LSP)
+Definition:
+A child class should be able to replace its parent class without breaking the behavior of the program.
+<?php
+
+class Bird {
+    public function fly() {
+        echo "Bird is flying\n";
+    }
+}
+
+class Sparrow extends Bird {
+    public function fly() {
+        echo "Sparrow is flying\n";
+    }
+}
+
+// This function works for any Bird or subclass
+function makeItFly(Bird $bird) {
+    $bird->fly();
+}
+
+$bird = new Sparrow();
+makeItFly($bird);  // Output: Sparrow is flying
+
+?>
+
+❌ Bad Example (LSP Violation):
+-----------------------------------------
+<?php
+
+class Bird {
+    public function fly() {
+        echo "Bird is flying\n";
+    }
+}
+
+class Ostrich extends Bird {
+    // Ostriches can't fly!
+    public function fly() {
+        throw new Exception("Ostriches can't fly!");
+    }
+}
+
+function makeItFly(Bird $bird) {
+    $bird->fly();  // This might throw an error!
+}
+
+$bird = new Ostrich();
+makeItFly($bird);  // ❌ Breaks program logic
+
+?>
+
+solve the logic problem : 
+--------------------------------
+✅ Fix: Use better class hierarchy => 
+
+<?php
+
+interface CanFly {
+    public function fly();
+}
+
+class Sparrow implements CanFly {
+    public function fly() {
+        echo "Sparrow flying\n";
+    }
+}
+
+class Ostrich {
+    public function walk() {
+        echo "Ostrich walking\n";
+    }
+}
+
+function makeItFly(CanFly $bird) {
+    $bird->fly();
+}
+
+makeItFly(new Sparrow());  // ✅ OK
+// makeItFly(new Ostrich()); ❌ Ostrich not allowed
+
+?>
+
+
+LSP
+Child classes must work in place of parent
+Avoid runtime errors or wrong behavior
+
+
+
+#Dependency Inversion principle : 
+---------------------------------------------
+🔴 D – Dependency Inversion Principle (DIP)
+Definition:
+High-level modules should not depend on low-level modules. Both should depend on abstractions (interfaces).
+
+#Bad example : 
+<?php
+
+class MySQLDatabase {
+    public function save($data) {
+        echo "Saving to MySQL: $data\n";
+    }
+}
+
+class App {
+    private $db;
+
+    public function __construct() {
+        $this->db = new MySQLDatabase();  // ❌ hardcoded
+    }
+
+    public function saveData($data) {
+        $this->db->save($data);
+    }
+}
+
+$app = new App();
+$app->saveData("user info");
+
+?>
+
+✅ Good Example (Dependency Inversion using Interface):
+------------------------------------------------------------------------------
+<?php
+
+interface Database {
+    public function save($data);
+}
+
+class MySQLDatabase implements Database {
+    public function save($data) {
+        echo "Saving to MySQL: $data\n";
+    }
+}
+
+class PostgreSQLDatabase implements Database {
+    public function save($data) {
+        echo "Saving to PostgreSQL: $data\n";
+    }
+}
+
+class App {
+    private $db;
+
+    public function __construct(Database $db) {
+        $this->db = $db;  // ✅ depends on abstraction
+    }
+
+    public function saveData($data) {
+        $this->db->save($data);
+    }
+}
+
+$app = new App(new MySQLDatabase());
+$app->saveData("user info");
+
+?>
+
+
+
+DIP
+High-level code depends on interfaces
+Flexible and testable design
