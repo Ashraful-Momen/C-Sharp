@@ -17,7 +17,7 @@ public class Logger {
 
     public static Logger GetInstance() {
         if(_instance == null) {
-            lock(_lock) {//thread1, thread2, thread3
+            lock(_lock) {// this line block thread : any one thread can go this block => thread1, thread2, thread3 then create any object . after create one object other thread can't create any object(single ton)
                 if(_instance == null) { // thread2
                     _instance = new Logger(); // thread1
                 }
