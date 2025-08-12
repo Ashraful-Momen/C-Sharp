@@ -1,5 +1,5 @@
 // Single ton:
-
+// alltime create 1 object and provide every class who clss object form single ton class. example : log , db connection etc. 
 
 using System;
 using System.Threading;
@@ -60,7 +60,8 @@ class Program {
 
 
 
-// Factory Method with Stretagy Design Pattern:
+// Factory Method with Stretagy Design Pattern: 
+// this is the normal class : if other class need object from factory class : alway provide new object for every one who call for object. 
 
 using System;
 using System.Collections.Generic;
