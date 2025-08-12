@@ -1,4 +1,6 @@
 // Single ton:
+// at a time create 1 object and provide everyone who need the object . 
+//example : log writing object , DB connection . 
 // alltime create 1 object and provide every class who clss object form single ton class. example : log , db connection etc. 
 
 using System;
@@ -61,6 +63,7 @@ class Program {
 
 
 // Factory Method with Stretagy Design Pattern: 
+// create multiple object for multiople call for creatting object. 
 // this is the normal class : if other class need object from factory class : alway provide new object for every one who call for object. 
 
 using System;
