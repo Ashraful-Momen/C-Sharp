@@ -1,0 +1,26 @@
+1. Single ton : 
+---------------
+Create only one object from class . and provide that object to others (who call for object) . example : Log writting , DB connect etc object . 
+
+2. Factory method : 
+-------------------
+A Factory for providing object from a class .  the class provide object to anyone who call for object . it's a normal class . 
+
+
+3. Abstruct Method: 
+------------------
+A collection of Factory methods . 
+
+4. Builder Method: 
+-------------------
+A Class use for assigning object property . suppose in axios have to set the header , url , body , method . Basically Build class assing those step by step . 
+
+5. Property method : 
+--------------------
+Clone object not copy the object . 
+
+6. Deep copy vs Shallow copy : 
+-------------------------------
+suppose we copy a object (this object has so many property and some property use the reference / pointer ) that why object can't fully copy (reason for the reference / pointer) , it's define the shallow copy . 
+
+and copy object properly not use any pointer/reference value in the object , it's define the deep copy . 
